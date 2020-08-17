@@ -1,0 +1,39 @@
+body {
+	background-color: #39024d;
+	color: #FFFFFF;
+	margin-left: 20px;
+	padding-top: 65px;
+}
+
+.bg-steel {
+  	background-color: #7c43bd;
+}
+
+.site-header .navbar-nav .nav-link {
+  	color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  	color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  	font-weight: 500;
+}
+
+.content-section {
+	padding: 10px 20px 20px 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 1px solid #ffffff;
+	border-radius: 3px;
+}
+
+.article-title {
+	color: #ffffff;
+	text-decoration: underline;
+}
+
+hr {
+	border-color: #ffffff;
+}

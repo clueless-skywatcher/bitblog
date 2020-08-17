@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+	{% for post in posts %}
+		<article class="media content-section">
+			<div class="media-body">
+				<div class="article-metadata">
+					<a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
+					<small class="text-muted">{{ post.post_date }}</small>
+				</div>
+				<h2><a class="article-title" href="{% url 'post' post.id %}">{{ post.title }}</a></h2>
+				<p class="article-content">{{ post.content }}</p>
+				<small class="text-muted">{{ post.blogcomment_set.count }} Comment(s)</small>
+			</div>
+		</article>
+	{% endfor %}
+{% endblock %}
+{% block sidebar %}
+	<div class="content-section">
+		{% if user.is_authenticated %}
+	    	<h3>Welcome {{ user.username }}!</h3>
+	    	<ul class="list-group">
+	    		<li class="list-group-item list-group-item-light"><a href="">Top 10 posts</a></li>
+	        	<li class="list-group-item list-group-item-light"><a href="{% url 'post-create' %}">Create Post</a></li>
+	        	<li class="list-group-item list-group-item-light"><a href="{% url 'profile' user.username %}">Check Profile</a></li>
+	      	</ul>
+      	{% else %}
+      		<ul class="list-group">
+      			<li class="list-group-item list-group-item-light"><a href="">Top 10 posts</a></li>
+      		</ul>
+      	{% endif %}
+  	</div>
+{% endblock %}

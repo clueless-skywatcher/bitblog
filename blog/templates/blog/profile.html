@@ -1,0 +1,34 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<h1>{{ user.username }}</h1>
+	<div class="content-section">
+		{% for post in posts %}
+			<article class="media content-section">
+				<div class="media-body">
+					<div class="article-metadata">
+						<a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
+						<small class="text-muted">{{ post.post_date }}</small>
+					</div>
+					<h2><a class="article-title" href="{% url 'post' post.id %}">{{ post.title }}</a></h2>
+					<p class="article-content">{{ post.content }}</p>
+					<small class="text-muted">{{ post.blogcomment_set.count }} Comment(s)</small>
+				</div>
+			</article>
+		{% endfor %}
+	</div>	
+{% endblock %}
+{% block sidebar %}
+	<div class="content-section">
+    	<h3>Details</h3>
+    	<ul class="list-group">
+        	<li class="list-group-item list-group-item-light">{{ user.blogpost_set.count }} post(s)</li>
+        	<li class="list-group-item list-group-item-light">{{ user.score }} total score</li>
+        	{% if user.is_authenticated %}
+        		<li class="list-group-item list-group-item-light"><a href="{% url 'user-update' user.username %}">Update Profile</li>
+        	{% endif %}
+      	</ul>
+        </p>
+  	</div>
+{% endblock %}
