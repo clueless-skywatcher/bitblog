@@ -38,12 +38,13 @@ def register_page(request):
 def profile(request, username):
 	user = User.objects.filter(username = username).first()
 	current_user = request.user
-
-	rel_follow = Following.objects.filter(followed = user, follower = current_user).first()
-	if rel_follow:
-		following = True
-	else:
-		following = False
+	following = None
+	if current_user.is_authenticated:
+		rel_follow = Following.objects.filter(followed = user, follower = current_user).first()
+		if rel_follow:
+			following = True
+		else:
+			following = False
 
 	if not user:
 		return render(request, 'blog/notfound404.html')
