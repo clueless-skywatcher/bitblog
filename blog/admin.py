@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(BlogPost)
 admin.site.register(BlogComment)
 admin.site.register(BlogUser)
+admin.site.register(Following)

@@ -37,9 +37,17 @@
     	<ul class="list-group">
         	<li class="list-group-item list-group-item-light">{{ profile_user.blogpost_set.count }} post(s)</li>
         	<li class="list-group-item list-group-item-light">{{ profile_user.score }} total score</li>
-        	<li class="list-group-item list-group-item-light">{{ profile_user.followers.count }} followers</li>
+        	<li class="list-group-item list-group-item-light">{{ profile_user.followers.count }} follower(s)</li>
+        	<li class="list-group-item list-group-item-light">{{ profile_user.following.count }} following</li>
         	{% if profile_user == user and user.is_authenticated %}
         		<li class="list-group-item list-group-item-light"><a href="{% url 'user-update' %}">Update Profile</li>
+        	{% endif %}
+        	{% if profile_user != user and user.is_authenticated %}
+        		{% if following %}
+        			<li class="list-group-item list-group-item-light"><a href="{% url 'unfollow-user' user.id profile_user.id %}" class="text-danger">Unfollow</a></li>
+        		{% else %}
+        			<li class="list-group-item list-group-item-light"><a href="{% url 'follow-user' user.id profile_user.id %}">Follow</a></li>        		
+        		{% endif %}
         	{% endif %}
       	</ul>
         </p>

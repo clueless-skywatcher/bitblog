@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import BlogPost, BlogComment
+from .models import BlogPost, BlogComment, Following
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, CommentForm, BlogUserUpdateForm
@@ -37,10 +37,21 @@ def register_page(request):
 
 def profile(request, username):
 	user = User.objects.filter(username = username).first()
+	current_user = request.user
+
+	rel_follow = Following.objects.filter(followed = user, follower = current_user).first()
+	if rel_follow:
+		following = True
+	else:
+		following = False
+
+	if not user:
+		return render(request, 'blog/notfound404.html')
 	posts = user.blogpost_set.order_by('-post_date')
 	return render(request, 'blog/profile.html', context = {
 		'profile_user' : user,
-		'posts' : posts
+		'posts' : posts,
+		'following' : following
 	})
 
 def show_post(request, pk):
@@ -71,6 +82,29 @@ def show_post(request, pk):
 	})
 
 @login_required
+def follow_user(request, follower, followed):
+	followerUser = User.objects.filter(pk = follower).first()
+	followedUser = User.objects.filter(pk = followed).first()
+
+	rel_follow = Following.objects.filter(followed = followedUser, follower = followerUser).first()
+	if rel_follow is None:
+		rel_follow = Following(followed = followedUser, follower = followerUser)
+		rel_follow.save()
+		messages.success(request, f'You are following {followedUser.username}')
+	return redirect('profile', followedUser.username)
+
+@login_required
+def unfollow_user(request, follower, followed):
+	followerUser = User.objects.filter(pk = follower).first()
+	followedUser = User.objects.filter(pk = followed).first()
+
+	rel_follow = Following.objects.filter(followed = followedUser, follower = followerUser).first()
+	if rel_follow:
+		rel_follow.delete()
+		messages.info(request, f'You are no longer following {followedUser.username}')
+	return redirect('profile', followedUser.username)
+
+@login_required
 def update_user(request):
 	if request.method == 'POST':
 		update_form = UserUpdateForm(request.POST, instance = request.user)
@@ -90,30 +124,6 @@ def update_user(request):
 		'profile_form' : profile_form
 	}
 	return render(request, 'blog/update_profile.html', context = context)
-
-# @login_required
-# def make_comment(request, pk):
-# 	post = BlogPost.objects.filter(id = pk).first()
-# 	if request.method == 'POST':
-# 		comment_form = CommentForm(request.POST)
-# 		if comment_form.is_valid():
-# 			post = BlogPost.objects.filter(id = pk).first()
-# 			user = request.user
-# 			comment = form.cleaned_data.get('comment')
-# 			comm_obj = BlogComment(
-# 				comment = comment,
-# 				author = user,
-# 				parent_post = post 
-# 			)
-# 			comm_obj.save()
-# 		return redirect('post', pk = pk)
-# 	else:
-# 		comment_form = CommentForm()
-
-# 	return render(request, 'blog/post.html', context = {
-# 		'post' : post,
-# 		'comment_form' : comment_form
-# 	})
 			
 class BlogPostListView(ListView):
 	model = BlogPost

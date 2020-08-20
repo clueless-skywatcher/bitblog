@@ -34,8 +34,8 @@ class BlogUser(models.Model):
 	birth_date = models.DateField(null = True, blank = True)
 
 class Following(models.Model):
-	user_id = models.ForeignKey(User, related_name = 'following', on_delete = models.DO_NOTHING)
-	follower_id = models.ForeignKey(User, related_name = 'followers', on_delete = models.DO_NOTHING)
+	followed = models.ForeignKey(User, related_name = 'followers', on_delete = models.DO_NOTHING)
+	follower = models.ForeignKey(User, related_name = 'following', on_delete = models.DO_NOTHING)
 
 @receiver(post_save, sender = User)
 def make_profile(sender, instance, created, **kwargs):
