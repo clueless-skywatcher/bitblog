@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import BlogComment
+from .models import BlogComment, BlogUser
 
 class UserRegistrationForm(UserCreationForm):
 	email = forms.EmailField()
@@ -22,4 +22,13 @@ class CommentForm(forms.ModelForm):
 	class Meta:
 		model = BlogComment
 		fields = ['comment']
+
+class BlogUserUpdateForm(forms.ModelForm):
+	desc = forms.CharField(max_length = 250, required = False)
+	hometown = forms.CharField(max_length = 200, required = False)
+	birth_date = forms.DateField(required = False)
+
+	class Meta:
+		model = BlogUser
+		fields = ['desc', 'hometown', 'birth_date']
 
