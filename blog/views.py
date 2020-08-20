@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import BlogPost, User, BlogComment
+from .models import BlogPost, BlogComment
+from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import UserRegistrationForm, UserUpdateForm, CommentForm
-from django.contrib.auth.decorators import login_required
+from .forms import UserRegistrationForm, UserUpdateForm, CommentForm, BlogUserUpdateForm
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.generic import (
 	ListView, 
 	DetailView,
@@ -16,7 +17,8 @@ def home_page(request):
 	posts = BlogPost.objects.order_by('-post_date')
 	return render(request, 'index.html', context = {
 		'title' : "BitBlog - Home",
-		'posts' : posts
+		'posts' : posts,
+		'current_user' : request.user
 	})
 
 def register_page(request):
@@ -37,7 +39,7 @@ def profile(request, username):
 	user = User.objects.filter(username = username).first()
 	posts = user.blogpost_set.order_by('-post_date')
 	return render(request, 'blog/profile.html', context = {
-		'user' : user,
+		'profile_user' : user,
 		'posts' : posts
 	})
 
@@ -64,25 +66,29 @@ def show_post(request, pk):
 	return render(request, 'blog/post.html', context = {
 		'post' : post,
 		'comments' : comments,
-		'comment_form' : comment_form
+		'comment_form' : comment_form,
+		'current_user' : request.user
 	})
 
 @login_required
-def update_user(request, username):
+def update_user(request):
 	if request.method == 'POST':
 		update_form = UserUpdateForm(request.POST, instance = request.user)
-		if update_form.is_valid():
+		profile_form = BlogUserUpdateForm(request.POST, instance = request.user.bloguser)
+		if update_form.is_valid() and profile_form.is_valid():
 			update_form.save()
+			profile_form.save()
 			messages.success(request, 'Your account has been updated')
-			return redirect('profile', username = username)
+			return redirect('profile', username = request.user.username)
 	else:
 		update_form = UserUpdateForm(instance = request.user)
+		profile_form = BlogUserUpdateForm(instance = request.user.bloguser)
 
 	context = {
 		'update_form' : update_form,
-		'username' : username
+		'uname' : request.user.username,
+		'profile_form' : profile_form
 	}
-
 	return render(request, 'blog/update_profile.html', context = context)
 
 # @login_required

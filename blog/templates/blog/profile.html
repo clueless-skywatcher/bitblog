@@ -2,7 +2,18 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-	<h1>{{ user.username }}</h1>
+	<div class="content-section">
+		<h1>{{ profile_user.username }}</h1>
+		<small class="text-muted">Description</small>
+		<p class="article-content">{{ profile_user.bloguser.desc }}</p>
+		<small class="text-muted">Hometown</small>
+		<p class="article-content">{{ profile_user.bloguser.hometown }}</p>
+		{% if profile_user.bloguser.birth_date %}
+			<small class="text-muted">Birth Date</small>
+			<p class="article-content">{{ profile_user.bloguser.birth_date }}</p>
+		{% endif %}
+	</div>
+	{% if posts %}
 	<div class="content-section">
 		{% for post in posts %}
 			<article class="media content-section">
@@ -18,15 +29,17 @@
 			</article>
 		{% endfor %}
 	</div>	
+	{% endif %}
 {% endblock %}
 {% block sidebar %}
 	<div class="content-section">
     	<h3>Details</h3>
     	<ul class="list-group">
-        	<li class="list-group-item list-group-item-light">{{ user.blogpost_set.count }} post(s)</li>
-        	<li class="list-group-item list-group-item-light">{{ user.score }} total score</li>
-        	{% if user.is_authenticated %}
-        		<li class="list-group-item list-group-item-light"><a href="{% url 'user-update' user.username %}">Update Profile</li>
+        	<li class="list-group-item list-group-item-light">{{ profile_user.blogpost_set.count }} post(s)</li>
+        	<li class="list-group-item list-group-item-light">{{ profile_user.score }} total score</li>
+        	<li class="list-group-item list-group-item-light">{{ profile_user.followers.count }} followers</li>
+        	{% if profile_user == user and user.is_authenticated %}
+        		<li class="list-group-item list-group-item-light"><a href="{% url 'user-update' %}">Update Profile</li>
         	{% endif %}
       	</ul>
         </p>
