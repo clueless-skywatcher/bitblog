@@ -39,7 +39,6 @@ def profile(request, username):
 	user = User.objects.filter(username = username).first()
 	current_user = request.user
 	following = None
-	# Check if current user is guest or not
 	if current_user.is_authenticated:
 		rel_follow = Following.objects.filter(followed = user, follower = current_user).first()
 		if rel_follow:
