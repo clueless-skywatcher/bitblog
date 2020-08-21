@@ -164,3 +164,22 @@ class BlogPostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 			return True
 		return False
 
+def show_followers(request, username):
+	p_user = User.objects.filter(username = username).first()
+	followers = p_user.followers.all()
+	return render(request, 'blog/followlist.html', context = {
+		'followlist' : followers,
+		'header' : 'Followers',
+		'p_user' : p_user,
+		'following' : False
+	})
+
+def show_following(request, username):
+	p_user = User.objects.filter(username = username).first()
+	following = p_user.following.all()
+	return render(request, 'blog/followlist.html', context = {
+		'followlist' : following,
+		'header' : 'Following',
+		'p_user' : p_user,
+		'following' : True
+	})

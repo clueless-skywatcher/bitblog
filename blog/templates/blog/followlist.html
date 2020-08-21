@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+	<h1>{{ header }} - {{ p_user.username }}</h1>
+	{% if followlist %}
+		{% if following %}
+			{% for follow in followlist %}
+				<div class="content-section">
+					<h3>
+						<a href="{% url 'profile' follow.followed.username %}">
+							{{ follow.followed.username }}
+						</a>
+					</h3>
+					<small>{{ follow.followed.bloguser.desc }}</small>
+				</div>
+			{% endfor %}
+		{% else %}
+			{% for follow in followlist %}
+				<div class="content-section">
+					<h3>
+						<a href="{% url 'profile' follow.follower.username %}">
+							{{ follow.follower.username }}
+						</a>
+					</h3>
+					<small>{{ follow.follower.bloguser.desc }}</small>
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endif %}
+{% endblock %}

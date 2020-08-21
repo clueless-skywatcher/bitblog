@@ -37,8 +37,8 @@
     	<ul class="list-group">
         	<li class="list-group-item list-group-item-light">{{ profile_user.blogpost_set.count }} post(s)</li>
         	<li class="list-group-item list-group-item-light">{{ profile_user.score }} total score</li>
-        	<li class="list-group-item list-group-item-light">{{ profile_user.followers.count }} follower(s)</li>
-        	<li class="list-group-item list-group-item-light">{{ profile_user.following.count }} following</li>
+        	<li class="list-group-item list-group-item-light"><a href="{% url 'show-followers' profile_user.username %}">{{ profile_user.followers.count }} follower(s)</a></li>
+        	<li class="list-group-item list-group-item-light"><a href="{% url 'show-following' profile_user.username %}">{{ profile_user.following.count }} following</a></li>
         	{% if profile_user == user and user.is_authenticated %}
         		<li class="list-group-item list-group-item-light"><a href="{% url 'user-update' %}">Update Profile</li>
         	{% endif %}
