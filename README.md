@@ -9,6 +9,7 @@ Features:
 
 Future plans:
 - Pagination
+- Upvote-downvote system
 - Working search bar
 - Password reset feature
 - Notification system
