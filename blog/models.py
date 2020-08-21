@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+User._meta.get_field('email')._unique = True
+
 class BlogPost(models.Model):
 	title = models.CharField(max_length = 50)
 	content = models.TextField()

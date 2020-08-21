@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import BlogPost, BlogComment, Following
-from django.contrib.auth.models import User
+from .models import BlogPost, BlogComment, Following, User
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, CommentForm, BlogUserUpdateForm
 from django.contrib.auth.decorators import login_required, user_passes_test
