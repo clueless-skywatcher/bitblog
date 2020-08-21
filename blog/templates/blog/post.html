@@ -35,7 +35,7 @@
 						<a class="mr-2" href="">{{ comment.author }}</a>
 						<small class="text-muted">{{ comment.comment_date }}</small>
 					</div>
-				<p class="article-content">{{ comment.comment }}</p>
+				<p class="article-content">{{ comment.comment | linebreaks }}</p>
 				{% endfor %}
 			</div>
 			{% endif %}
