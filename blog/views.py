@@ -11,6 +11,7 @@ from django.views.generic import (
 	DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def home_page(request):
 	posts = BlogPost.objects.order_by('-post_date')
@@ -48,10 +49,22 @@ def profile(request, username):
 	if not user:
 		return render(request, 'blog/notfound404.html')
 	posts = user.blogpost_set.order_by('-post_date')
+	paginator = Paginator(posts, 20)
+
+	page_no = request.GET.get('page', 1)
+
+	try:
+		page_obj = paginator.page(page_no)
+	except PageNotAnInteger:
+		page_obj = paginator.page(1)
+	except EmptyPage:
+		page_obj = paginator.page(paginator.num_pages)
+
 	return render(request, 'blog/profile.html', context = {
 		'profile_user' : user,
 		'posts' : posts,
-		'following' : following
+		'following' : following,
+		'page_obj' : page_obj
 	})
 
 def show_post(request, pk):
@@ -130,6 +143,7 @@ class BlogPostListView(ListView):
 	template_name = 'index.html'
 	context_object_name = 'posts'
 	ordering = ['-post_date']
+	paginate_by = 20
 
 class BlogPostCreateView(LoginRequiredMixin, CreateView):
 	model = BlogPost

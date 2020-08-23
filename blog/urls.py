@@ -10,5 +10,5 @@ urlpatterns = [
 	path('follow/<int:follower>_<int:followed>', follow_user, name = 'follow-user'),
 	path('unfollow/<int:follower>_<int:followed>', unfollow_user, name = 'unfollow-user'),
 	path('profile/<str:username>/followers/', show_followers, name = 'show-followers'),
-    	path('profile/<str:username>/following/', show_following, name = 'show-following')
+    path('profile/<str:username>/following/', show_following, name = 'show-following')
 ]
