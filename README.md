@@ -6,10 +6,11 @@ Features:
 - Has a follower system
 - Has a comment system
 - User can update their profiles with extra information
+- Working search bar to search users
+- Pagination
+- Rich text support
 
 Future plans:
-- Pagination
 - Upvote-downvote system
-- Working search bar
 - Password reset feature
 - Notification system
