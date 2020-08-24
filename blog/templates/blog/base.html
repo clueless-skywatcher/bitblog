@@ -17,6 +17,10 @@
 	      		</button>
 	      		<div class="collapse navbar-collapse" id="navbarToggle">
 	        		<div class="navbar-nav mr-auto">
+	        			<form class="form-inline my-2 my-lg-0" action="{% url 'search-user' %}" method="get">
+	        				<input type="search" name="searchkey" placeholder="Search user" class="form-control mr-sm-2"/>
+	        				<button class="btn btn-info mr-2" type="submit">Submit</button>
+	        			</form>
 	        		</div>
 	        		{% if user.is_authenticated %}
 		        		<div class="navbar-nav">

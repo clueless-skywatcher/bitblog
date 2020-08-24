@@ -14,7 +14,7 @@
 				{% endif %}
 			</div>
 			<hr>
-			<p class="article-content">{{ post.content | linebreaks }}</p>
+			<p class="article-content">{{ post.content | safe | linebreaks }}</p>
 			<hr>
 			{% if user.is_authenticated %}
 				<form method = "POST">

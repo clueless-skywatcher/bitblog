@@ -9,7 +9,7 @@
 					<small class="text-muted">{{ post.post_date }}</small>
 				</div>
 				<h2><a class="article-title" href="{% url 'post' post.id %}">{{ post.title }}</a></h2>
-				<p class="article-content">{{ post.content | linebreaks | truncatewords:"100" }}</p>
+				<p class="article-content">{{ post.content | safe | linebreaks | truncatewords:"100" }}</p>
 				<small class="text-muted">{{ post.blogcomment_set.count }} Comment(s)</small>
 			</div>
 		</article>

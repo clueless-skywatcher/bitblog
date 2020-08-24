@@ -196,3 +196,17 @@ def show_following(request, username):
 		'p_user' : p_user,
 		'following' : True
 	})
+
+class SearchUserView(ListView):
+	model = User
+	template_name = 'blog/search_user.html'
+	context_object_name = 'users'
+
+	def get_queryset(self):
+		query = self.request.GET.get('searchkey')
+		return User.objects.filter(username__contains = query)
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['searchkey'] = self.request.GET.get('searchkey')
+		return context

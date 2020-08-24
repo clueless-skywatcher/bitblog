@@ -4,12 +4,13 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from ckeditor.fields import RichTextField
 
 User._meta.get_field('email')._unique = True
 
 class BlogPost(models.Model):
 	title = models.CharField(max_length = 50)
-	content = models.TextField()
+	content = RichTextField()
 	post_date = models.DateTimeField(default = timezone.now)
 	author = models.ForeignKey(User, on_delete = models.CASCADE)
 	votes = models.IntegerField(default = 0)

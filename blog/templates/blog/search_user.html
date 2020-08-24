@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+	<h2>Search results for '{{ searchkey }}'</h1>
+	{% for user in users %}
+		<div class="content-section">
+			<a href="{% url 'profile' user.username %}"><h3>{{ user.username }}</h3></a>
+			<small class="article-content">{{ user.bloguser.desc }}</small>
+		</div>
+	{% endfor %}
+{% endblock %}
