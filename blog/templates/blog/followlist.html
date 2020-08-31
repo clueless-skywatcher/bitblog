@@ -9,6 +9,7 @@
 						<a href="{% url 'profile' follow.followed.username %}">
 							{{ follow.followed.username }}
 						</a>
+						<img src = "{{ follow.followed.bloguser.current_profile_card.img_small.url }}">
 					</h3>
 					<small>{{ follow.followed.bloguser.desc }}</small>
 				</div>
@@ -20,6 +21,7 @@
 						<a href="{% url 'profile' follow.follower.username %}">
 							{{ follow.follower.username }}
 						</a>
+						<img src = "{{ follow.follower.bloguser.current_profile_card.img_small.url }}">
 					</h3>
 					<small>{{ follow.follower.bloguser.desc }}</small>
 				</div>

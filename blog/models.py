@@ -30,11 +30,20 @@ class BlogComment(models.Model):
 	votes = models.IntegerField(default = 0)
 	parent_post = models.ForeignKey(BlogPost, on_delete = models.CASCADE)
 
+class ProfileCard(models.Model):
+	name = models.CharField(unique = True, max_length = 50)
+	img = models.ImageField(upload_to = 'profile_cards')
+	img_small = models.ImageField(upload_to = 'profile_cards_small')
+
+	def __str__(self):
+		return self.name
+
 class BlogUser(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
 	desc = models.TextField(max_length = 250, default = "No description")
 	hometown = models.CharField(max_length = 200, default = "Not specified")
 	birth_date = models.DateField(null = True, blank = True)
+	current_profile_card = models.ForeignKey(ProfileCard, default = 1, on_delete = models.DO_NOTHING)
 
 class Following(models.Model):
 	followed = models.ForeignKey(User, related_name = 'followers', on_delete = models.DO_NOTHING)

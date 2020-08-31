@@ -3,7 +3,7 @@
 
 {% block content %}
 	<div class="content-section">
-		<h1>{{ profile_user.username }}</h1>
+		<h1>{{ profile_user.username }}		<img src="{{ profile_card.img.url }}"></h1>
 		<small class="text-muted">Description</small>
 		<p class="article-content">{{ profile_user.bloguser.desc }}</p>
 		<small class="text-muted">Hometown</small>
@@ -20,6 +20,7 @@
 				<div class="media-body">
 					<div class="article-metadata">
 						<a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
+						<img src = "{{ post.author.bloguser.current_profile_card.img_small.url }}">
 						<small class="text-muted">{{ post.post_date }}</small>
 					</div>
 					<h2><a class="article-title" href="{% url 'post' post.id %}">{{ post.title }}</a></h2>
@@ -45,7 +46,7 @@
 				<a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info mb-4">Last</a>
 			{% endif %}
 			{% endif %}
-	</div>	
+	</div>
 	{% endif %}
 {% endblock %}
 {% block sidebar %}
@@ -63,7 +64,7 @@
         		{% if following %}
         			<li class="list-group-item list-group-item-light"><a href="{% url 'unfollow-user' user.id profile_user.id %}" class="text-danger">Unfollow</a></li>
         		{% else %}
-        			<li class="list-group-item list-group-item-light"><a href="{% url 'follow-user' user.id profile_user.id %}">Follow</a></li>        		
+        			<li class="list-group-item list-group-item-light"><a href="{% url 'follow-user' user.id profile_user.id %}">Follow</a></li>
         		{% endif %}
         	{% endif %}
       	</ul>

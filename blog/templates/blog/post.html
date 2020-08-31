@@ -7,6 +7,7 @@
 		<div class="media-body">
 			<div class="article-metadata">
 				<a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
+				<img src = "{{ post.author.bloguser.current_profile_card.img_small.url }}">
 				<small class="text-muted">{{ post.post_date }}</small>
 				{% if post.author == user %}
 					<a href="{% url 'post-update' post.id %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
@@ -33,6 +34,7 @@
 				{% for comment in comments %}
 					<div class="article-metadata">
 						<a class="mr-2" href="">{{ comment.author }}</a>
+						<img src="{{ comment.author.bloguser.current_profile_card.img_small.url }}">
 						<small class="text-muted">{{ comment.comment_date }}</small>
 					</div>
 				<p class="article-content">{{ comment.comment | linebreaks }}</p>
@@ -41,5 +43,5 @@
 			{% endif %}
 		</div>
 	</article>
-	
+
 {% endblock %}

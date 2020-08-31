@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import BlogPost, BlogComment, Following, User
+from .models import BlogPost, BlogComment, Following, User, ProfileCard
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, CommentForm, BlogUserUpdateForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.generic import (
-	ListView, 
+	ListView,
 	DetailView,
 	CreateView,
 	UpdateView,
@@ -60,17 +60,20 @@ def profile(request, username):
 	except EmptyPage:
 		page_obj = paginator.page(paginator.num_pages)
 
+	profile_card = user.bloguser.current_profile_card
+
 	return render(request, 'blog/profile.html', context = {
 		'profile_user' : user,
 		'posts' : posts,
 		'following' : following,
-		'page_obj' : page_obj
+		'page_obj' : page_obj,
+		'profile_card' : profile_card
 	})
 
 def show_post(request, pk):
 	post = BlogPost.objects.filter(id = pk).first()
 	comments = post.blogcomment_set.order_by('-comment_date')
-	
+
 	if request.method == 'POST':
 		comment_form = CommentForm(request.POST)
 		if comment_form.is_valid():
@@ -80,13 +83,13 @@ def show_post(request, pk):
 			comm_obj = BlogComment(
 				comment = comment,
 				author = user,
-				parent_post = post 
+				parent_post = post
 			)
 			comm_obj.save()
 		return redirect('post', pk = pk)
 	else:
 		comment_form = CommentForm()
-
+		
 	return render(request, 'blog/post.html', context = {
 		'post' : post,
 		'comments' : comments,
@@ -137,7 +140,7 @@ def update_user(request):
 		'profile_form' : profile_form
 	}
 	return render(request, 'blog/update_profile.html', context = context)
-			
+
 class BlogPostListView(ListView):
 	model = BlogPost
 	template_name = 'index.html'

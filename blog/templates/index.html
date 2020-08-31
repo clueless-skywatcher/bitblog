@@ -6,6 +6,7 @@
 			<div class="media-body">
 				<div class="article-metadata">
 					<a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
+					<img src = "{{ post.author.bloguser.current_profile_card.img_small.url }}">
 					<small class="text-muted">{{ post.post_date }}</small>
 				</div>
 				<h2><a class="article-title" href="{% url 'post' post.id %}">{{ post.title }}</a></h2>
