@@ -34,9 +34,10 @@ class ProfileCard(models.Model):
 	name = models.CharField(unique = True, max_length = 50)
 	img = models.ImageField(upload_to = 'profile_cards')
 	img_small = models.ImageField(upload_to = 'profile_cards_small')
+	desc = models.CharField(max_length = 100, blank = True)
 
 	def __str__(self):
-		return self.name
+		return f"{self.name} {self.id}"
 
 class BlogUser(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
@@ -45,14 +46,31 @@ class BlogUser(models.Model):
 	birth_date = models.DateField(null = True, blank = True)
 	current_profile_card = models.ForeignKey(ProfileCard, default = 1, on_delete = models.DO_NOTHING)
 
+	def __str__(self):
+		return self.user.username
+
 class Following(models.Model):
 	followed = models.ForeignKey(User, related_name = 'followers', on_delete = models.DO_NOTHING)
 	follower = models.ForeignKey(User, related_name = 'following', on_delete = models.DO_NOTHING)
+
+class UserGallery(models.Model):
+	user = models.ForeignKey(BlogUser, related_name = 'profile_cards', on_delete = models.DO_NOTHING)
+	profile_card = models.ForeignKey(ProfileCard, on_delete = models.DO_NOTHING)
+
+	def __str__(self):
+		return f"{self.profile_card.name}-{self.user.user.username}"
 
 @receiver(post_save, sender = User)
 def make_profile(sender, instance, created, **kwargs):
 	if created:
 		BlogUser.objects.create(user = instance)
+
+@receiver(post_save, sender = BlogUser)
+def add_default_profile_card(sender, instance, created, **kwargs):
+	if created:
+		profile_card = ProfileCard.objects.filter(name = 'Welcome').first()
+		gallery_obj = UserGallery(user = instance, profile_card = profile_card)
+		gallery_obj.save()
 
 @receiver(post_save, sender = User)
 def save_profile(sender, instance, **kwargs):

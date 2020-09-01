@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import BlogPost, BlogComment, Following, User, ProfileCard
+from .models import BlogPost, BlogComment, Following, User, ProfileCard, UserGallery
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, CommentForm, BlogUserUpdateForm
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -89,7 +89,7 @@ def show_post(request, pk):
 		return redirect('post', pk = pk)
 	else:
 		comment_form = CommentForm()
-		
+
 	return render(request, 'blog/post.html', context = {
 		'post' : post,
 		'comments' : comments,
@@ -121,6 +121,16 @@ def unfollow_user(request, follower, followed):
 	return redirect('profile', followedUser.username)
 
 @login_required
+def add_profile_card(request, username, pk):
+	if not request.user.is_superuser:
+		return render(request, 'blog/forbidden403.html')
+	profile_card = ProfileCard.objects.filter(pk = pk).first()
+	user = User.objects.filter(username = username).first()
+	gallery_obj = UserGallery(user = user.bloguser, profile_card = profile_card)
+	gallery_obj.save()
+	return redirect('blog-home')
+
+@login_required
 def update_user(request):
 	if request.method == 'POST':
 		update_form = UserUpdateForm(request.POST, instance = request.user)
@@ -140,6 +150,22 @@ def update_user(request):
 		'profile_form' : profile_form
 	}
 	return render(request, 'blog/update_profile.html', context = context)
+
+@login_required
+def profile_card_gallery(request):
+	current_user = request.user
+	profile_cards = [p.profile_card for p in current_user.bloguser.profile_cards.all()]
+	return render(request, 'blog/profcard_gallery.html', context = {
+		'profile_cards' : profile_cards
+	})
+
+@login_required
+def change_profile_card(request, name):
+	user = request.user
+	profile_card = ProfileCard.objects.filter(name = name).first()
+	user.bloguser.current_profile_card = profile_card
+	user.save()
+	return redirect('profile', user.username)
 
 class BlogPostListView(ListView):
 	model = BlogPost

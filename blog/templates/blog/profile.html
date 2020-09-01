@@ -59,6 +59,7 @@
         	<li class="list-group-item list-group-item-light"><a href="{% url 'show-following' profile_user.username %}">{{ profile_user.following.count }} following</a></li>
         	{% if profile_user == user and user.is_authenticated %}
         		<li class="list-group-item list-group-item-light"><a href="{% url 'user-update' %}">Update Profile</li>
+				<li class="list-group-item list-group-item-light"><a href="{% url 'profile-cards' %}">View/Change Profile Cards</a></li>
         	{% endif %}
         	{% if profile_user != user and user.is_authenticated %}
         		{% if following %}
