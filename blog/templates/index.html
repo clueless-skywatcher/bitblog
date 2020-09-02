@@ -9,6 +9,7 @@
 					<img src = "{{ post.author.bloguser.current_profile_card.img_small.url }}">
 					<small class="text-muted">{{ post.post_date }}</small>
 				</div>
+				<hr>
 				<h2><a class="article-title" href="{% url 'post' post.id %}">{{ post.title }}</a></h2>
 				<p class="article-content">{{ post.content | safe | linebreaks | truncatewords:"100" }}</p>
 				<small class="text-muted">{{ post.blogcomment_set.count }} Comment(s)</small>

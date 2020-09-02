@@ -57,6 +57,9 @@ class UserGallery(models.Model):
 	user = models.ForeignKey(BlogUser, related_name = 'profile_cards', on_delete = models.DO_NOTHING)
 	profile_card = models.ForeignKey(ProfileCard, on_delete = models.DO_NOTHING)
 
+	class Meta:
+		unique_together = ('user', 'profile_card')
+
 	def __str__(self):
 		return f"{self.profile_card.name}-{self.user.user.username}"
 
@@ -65,11 +68,11 @@ def make_profile(sender, instance, created, **kwargs):
 	if created:
 		BlogUser.objects.create(user = instance)
 
-@receiver(post_save, sender = BlogUser)
+@receiver(post_save, sender = User)
 def add_default_profile_card(sender, instance, created, **kwargs):
 	if created:
 		profile_card = ProfileCard.objects.filter(name = 'Welcome').first()
-		gallery_obj = UserGallery(user = instance, profile_card = profile_card)
+		gallery_obj = UserGallery(user = instance.bloguser, profile_card = profile_card)
 		gallery_obj.save()
 
 @receiver(post_save, sender = User)
