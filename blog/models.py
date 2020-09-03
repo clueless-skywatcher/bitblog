@@ -44,7 +44,7 @@ class BlogUser(models.Model):
 	desc = models.TextField(max_length = 250, default = "No description")
 	hometown = models.CharField(max_length = 200, default = "Not specified")
 	birth_date = models.DateField(null = True, blank = True)
-	current_profile_card = models.ForeignKey(ProfileCard, default = 1, on_delete = models.DO_NOTHING)
+	current_profile_card = models.ForeignKey(ProfileCard, on_delete = models.DO_NOTHING, default = 1)
 
 	def __str__(self):
 		return self.user.username
@@ -73,6 +73,8 @@ def add_default_profile_card(sender, instance, created, **kwargs):
 	if created:
 		profile_card = ProfileCard.objects.filter(name = 'Welcome').first()
 		gallery_obj = UserGallery(user = instance.bloguser, profile_card = profile_card)
+		instance.bloguser.current_profile_card = profile_card
+		instance.bloguser.save()
 		gallery_obj.save()
 
 @receiver(post_save, sender = User)
