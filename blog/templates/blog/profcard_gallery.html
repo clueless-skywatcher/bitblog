@@ -1,12 +1,11 @@
 {% extends 'blog/base.html' %}
 {% block content %}
     <h1>Change Profile Card</h1>
-    <div class="content-section show-two-per-line">
+    <div class="gallery-section show-two-per-line">
         {% for profile_card in profile_cards %}
-            <div class="content-section">
+            <div class="gallery-section">
                 <img src="{{ profile_card.img.url }}"><br><br>
                 <a href="{% url 'change-profile-card' profile_card.name %}"><h3>{{ profile_card.name }}</h3></a>
-                <p class="article-content">{{ profile_card.desc }}</p>
             </div>
         {% endfor %}
     </div>

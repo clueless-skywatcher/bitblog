@@ -34,8 +34,7 @@ class ProfileCard(models.Model):
 	name = models.CharField(unique = True, max_length = 50)
 	img = models.ImageField(upload_to = 'profile_cards')
 	img_small = models.ImageField(upload_to = 'profile_cards_small')
-	desc = models.CharField(max_length = 100, blank = True)
-
+	
 	def __str__(self):
 		return f"{self.name} {self.id}"
 
