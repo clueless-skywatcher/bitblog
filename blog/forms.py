@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import BlogComment, BlogUser, User
+from .blog_enums import *
 
 class UserRegistrationForm(UserCreationForm):
 	email = forms.EmailField()
@@ -23,8 +24,8 @@ class CommentForm(forms.ModelForm):
 		fields = ['comment']
 
 class BlogUserUpdateForm(forms.ModelForm):
-	desc = forms.CharField(max_length = 250, required = False)
-	hometown = forms.CharField(max_length = 200, required = False)
+	desc = forms.CharField(max_length = DESC_SIZE, required = False)
+	hometown = forms.CharField(max_length = HOMETOWN_SIZE, required = False)
 	birth_date = forms.DateField(required = False)
 
 	class Meta:

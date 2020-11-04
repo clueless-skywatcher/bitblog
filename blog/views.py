@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import BlogPost, BlogComment, Following, User, ProfileCard, UserGallery
+from .blog_enums import *
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, CommentForm, BlogUserUpdateForm
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -49,14 +50,14 @@ def profile(request, username):
 	if not user:
 		return render(request, 'blog/notfound404.html')
 	posts = user.blogpost_set.order_by('-post_date')
-	paginator = Paginator(posts, 20)
+	paginator = Paginator(posts, POSTS_PER_PAGE)
 
-	page_no = request.GET.get('page', 1)
+	page_no = request.GET.get('page', START_PAGE)
 
 	try:
 		page_obj = paginator.page(page_no)
 	except PageNotAnInteger:
-		page_obj = paginator.page(1)
+		page_obj = paginator.page(START_PAGE)
 	except EmptyPage:
 		page_obj = paginator.page(paginator.num_pages)
 
