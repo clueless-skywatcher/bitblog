@@ -1,5 +1,4 @@
 *.pyc
 venv
-__pycache__
-bitblog/__pycache__
-blog/__pycache__
+bitblog/__pycache__/
+blog/__pycache__/
