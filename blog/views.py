@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import BlogPost, BlogComment, Following, User, ProfileCard, UserGallery
+from .models import BlogPost, BlogComment, Following, User, ProfileCard, ProfileCardGallery
 from .blog_enums import *
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, CommentForm, BlogUserUpdateForm
@@ -62,13 +62,15 @@ def profile(request, username):
 		page_obj = paginator.page(paginator.num_pages)
 
 	profile_card = user.bloguser.current_profile_card
+	sigil = user.bloguser.current_sigil
 
 	return render(request, 'blog/profile.html', context = {
 		'profile_user' : user,
 		'posts' : posts,
 		'following' : following,
 		'page_obj' : page_obj,
-		'profile_card' : profile_card
+		'profile_card' : profile_card,
+		'sigil' : sigil
 	})
 
 def show_post(request, pk):
@@ -127,7 +129,7 @@ def add_profile_card(request, username, pk):
 		return render(request, 'blog/forbidden403.html')
 	profile_card = ProfileCard.objects.filter(pk = pk).first()
 	user = User.objects.filter(username = username).first()
-	gallery_obj = UserGallery(user = user.bloguser, profile_card = profile_card)
+	gallery_obj = ProfileCardGallery(user = user.bloguser, profile_card = profile_card)
 	gallery_obj.save()
 	return redirect('blog-home')
 

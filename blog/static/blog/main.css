@@ -71,3 +71,25 @@ hr {
 	border-radius: 3px;
 	width: 80vw;
 }
+
+.size-64 {
+    height: 64px;
+    width: 64px;
+}
+
+.size-128 {
+    height: 128px;
+    width: 128px;
+}
+
+.account-img {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+}
+
+.account-img-right {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 15px;
+}

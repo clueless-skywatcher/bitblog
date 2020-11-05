@@ -2,7 +2,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-	<div class="content-section">
+<article class="media content-section">
+	<img class = "account-img size-128" src="{{ sigil.img.url }}">
+	<div class="media-body">
 		<h1>{{ profile_user.username }}		<img src="{{ profile_card.img.url }}"></h1>
 		<small class="text-muted">Description</small>
 		<p class="article-content">{{ profile_user.bloguser.desc }}</p>
@@ -13,10 +15,12 @@
 			<p class="article-content">{{ profile_user.bloguser.birth_date }}</p>
 		{% endif %}
 	</div>
+</article>
 	{% if posts %}
 	<div class="content-section">
 		{% for post in page_obj %}
 			<article class="media content-section">
+				<img class = "account-img size-64" src="{{ post.author.bloguser.current_sigil.img.url }}">
 				<div class="media-body">
 					<div class="article-metadata">
 						<a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>

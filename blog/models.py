@@ -30,6 +30,13 @@ class BlogComment(models.Model):
 	votes = models.IntegerField(default = 0)
 	parent_post = models.ForeignKey(BlogPost, on_delete = models.CASCADE)
 
+class Sigil(models.Model):
+	name = models.CharField(unique=True, max_length=50)
+	img = models.ImageField(upload_to='sigils')
+
+	def __str__(self):
+		return f"{self.name} {self.id}"
+
 class ProfileCard(models.Model):
 	name = models.CharField(unique = True, max_length = 50)
 	img = models.ImageField(upload_to = 'profile_cards')
@@ -44,6 +51,7 @@ class BlogUser(models.Model):
 	hometown = models.CharField(max_length = 200, default = "Not specified")
 	birth_date = models.DateField(null = True, blank = True)
 	current_profile_card = models.ForeignKey(ProfileCard, on_delete = models.DO_NOTHING, default = 1)
+	current_sigil = models.ForeignKey(Sigil, on_delete = models.DO_NOTHING, default = 1)
 
 	def __str__(self):
 		return self.user.username
@@ -52,7 +60,7 @@ class Following(models.Model):
 	followed = models.ForeignKey(User, related_name = 'followers', on_delete = models.DO_NOTHING)
 	follower = models.ForeignKey(User, related_name = 'following', on_delete = models.DO_NOTHING)
 
-class UserGallery(models.Model):
+class ProfileCardGallery(models.Model):
 	user = models.ForeignKey(BlogUser, related_name = 'profile_cards', on_delete = models.DO_NOTHING)
 	profile_card = models.ForeignKey(ProfileCard, on_delete = models.DO_NOTHING)
 
@@ -61,6 +69,16 @@ class UserGallery(models.Model):
 
 	def __str__(self):
 		return f"{self.profile_card.name}-{self.user.user.username}"
+
+class SigilGallery(models.Model):
+	user = models.ForeignKey(BlogUser, related_name = 'sigils', on_delete = models.DO_NOTHING)
+	sigil = models.ForeignKey(Sigil, on_delete = models.DO_NOTHING)
+
+	class Meta:
+		unique_together = ('user', 'sigil')
+
+	def __str__(self):
+		return f"{self.sigil.name}-{self.user.user.username}"
 
 @receiver(post_save, sender = User)
 def make_profile(sender, instance, created, **kwargs):
@@ -71,10 +89,14 @@ def make_profile(sender, instance, created, **kwargs):
 def add_default_profile_card(sender, instance, created, **kwargs):
 	if created:
 		profile_card = ProfileCard.objects.filter(name = 'Welcome').first()
-		gallery_obj = UserGallery(user = instance.bloguser, profile_card = profile_card)
+		sigil = Sigil.objects.filter(name = 'Radioactive').first()
+		profcard_gallery_obj = ProfileCardGallery(user = instance.bloguser, profile_card = profile_card)
+		sigil_gallery_obj = SigilGallery(user = instance.bloguser, sigil = sigil)
 		instance.bloguser.current_profile_card = profile_card
+		instance.bloguser.current_sigil = sigil
 		instance.bloguser.save()
-		gallery_obj.save()
+		profcard_gallery_obj.save()
+		sigil_gallery_obj.save()
 
 @receiver(post_save, sender = User)
 def save_profile(sender, instance, **kwargs):
