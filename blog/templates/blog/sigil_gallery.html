@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <h1>Change Sigil</h1>
+    <div class="show-three-per-line">
+        {% for sigil in sigils %}
+            <div class="sigil">
+                <img class="size-128 center-align" src="{{ sigil.img.url }}"><br><br>
+                <a href="{% url 'change-sigil' sigil.name %}">{{ sigil.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

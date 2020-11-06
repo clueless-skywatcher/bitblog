@@ -20,28 +20,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0437f1f-8294-4b8c-b069-3ba7bf9af162" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/bitblog.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/sigils/Radioactive.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/migrations/0002_auto_20200902_2248.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/migrations/add_pics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/migrations/0003_auto_20200903_2214.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/templates/blog/sigil_gallery.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/templatetags/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/templatetags/custom_tags.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_cards/Ice_Myths.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_cards_small/Ice_Myths_small.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/8-bit_Laswell.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Brave_One.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Deaths_Watch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Growmaster.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Ice_Age.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Nyan.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Nyan_2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Open_Fire.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Rainbow_Peace.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bitblog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bitblog/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/static/blog/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/blog/static/blog/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/blogpost_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/blogpost_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/followlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/followlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/post.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/templates/blog/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profile_cards/Danger.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profile_cards/Toxic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profile_cards_small/Danger_small.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profile_cards_small/Toxic_small.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +78,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\USER\Documents\GitHub\bitblog\blog\templatetags" />
       <recent name="C:\Users\USER\Documents\GitHub\bitblog\blog\migrations" />
       <recent name="C:\Users\USER\Documents\GitHub\bitblog\media" />
       <recent name="C:\Users\USER\Documents\GitHub\bitblog\blog\static" />

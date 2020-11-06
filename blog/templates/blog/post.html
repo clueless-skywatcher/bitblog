@@ -6,6 +6,7 @@
 	<article class="media content-section">
 		<div class="media-body">
 			<div class="article-metadata">
+				<img class = "size-32" src="{{ post.author.bloguser.current_sigil.img.url }}">
 				<a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
 				<img src = "{{ post.author.bloguser.current_profile_card.img_small.url }}">
 				<small class="text-muted">{{ post.post_date }}</small>
@@ -33,6 +34,7 @@
 			<div class="content-section">
 				{% for comment in comments %}
 					<div class="article-metadata">
+						<img class = "size-32" src="{{ comment.author.bloguser.current_sigil.img.url }}">
 						<a class="mr-2" href="">{{ comment.author }}</a>
 						<img src="{{ comment.author.bloguser.current_profile_card.img_small.url }}">
 						<small class="text-muted">{{ comment.comment_date }}</small>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import BlogPost, BlogComment, Following, User, ProfileCard, ProfileCardGallery
+from .models import BlogPost, BlogComment, Following, User, ProfileCard, ProfileCardGallery, Sigil, SigilGallery
 from .blog_enums import *
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, CommentForm, BlogUserUpdateForm
@@ -131,7 +131,17 @@ def add_profile_card(request, username, pk):
 	user = User.objects.filter(username = username).first()
 	gallery_obj = ProfileCardGallery(user = user.bloguser, profile_card = profile_card)
 	gallery_obj.save()
-	return redirect('blog-home')
+	return redirect('profile', username)
+
+@login_required
+def add_sigil(request, username, pk):
+	if not request.user.is_superuser:
+		return render(request, 'blog/forbidden403.html')
+	sigil = Sigil.objects.filter(pk = pk).first()
+	user = User.objects.filter(username = username).first()
+	gallery_obj = SigilGallery(user = user.bloguser, sigil = sigil)
+	gallery_obj.save()
+	return redirect('profile', username)
 
 @login_required
 def update_user(request):
@@ -157,7 +167,7 @@ def update_user(request):
 @login_required
 def profile_card_gallery(request):
 	current_user = request.user
-	profile_cards = [p.profile_card for p in current_user.bloguser.profile_cards.all()]
+	profile_cards = sorted([p.profile_card for p in current_user.bloguser.profile_cards.all()], key = lambda x : x.name)
 	return render(request, 'blog/profcard_gallery.html', context = {
 		'profile_cards' : profile_cards
 	})
@@ -169,6 +179,23 @@ def change_profile_card(request, name):
 	user.bloguser.current_profile_card = profile_card
 	user.save()
 	return redirect('profile', user.username)
+
+@login_required
+def change_sigil(request, name):
+	user = request.user
+	sigil = Sigil.objects.filter(name = name).first()
+	user.bloguser.current_sigil = sigil
+	user.save()
+	return redirect('profile', user.username)
+
+@login_required
+def sigil_gallery(request):
+	current_user = request.user
+	sigils = sorted([s.sigil for s in current_user.bloguser.sigils.all()], key = lambda x : x.name)
+	return render(request, 'blog/sigil_gallery.html', context = {
+		'sigils' : sigils,
+		'large' : True
+	})
 
 class BlogPostListView(ListView):
 	model = BlogPost

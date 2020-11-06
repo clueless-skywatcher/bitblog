@@ -131,3 +131,10 @@ LOGIN_URL = 'login'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'width': '100%',
+        'toolbarCanCollapse': False,
+    },
+}
