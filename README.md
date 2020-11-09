@@ -11,7 +11,9 @@ Features:
 - Rich text support
 - Users now have profile cards that show up on their profile.
 - Users now have access to a gallery of profile cards they can choose from.
-Profile cards can be changed anytime.
+  Profile cards can be changed anytime.
+- Similar to profile cards, users now have sigils that also show up on their
+  profile. Now users get a variety of customization options to their profile.
 
 Future plans:
 - Upvote-downvote system
