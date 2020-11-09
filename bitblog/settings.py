@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'ckeditor',
-    'blog'
+    'blog',
+    'channels',
+    'chat'
 ]
 
 MIDDLEWARE = [
@@ -73,6 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'bitblog.wsgi.application'
+ASGI_APPLICATION = 'bitblog.asgi.application'
 
 
 # Database

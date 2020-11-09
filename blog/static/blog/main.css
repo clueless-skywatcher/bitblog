@@ -111,7 +111,7 @@ hr {
 	border-radius: 3px;
 	margin-left: 20px;
 	margin-right: 20px;
-	width: auto;
+	width: 150px;
 	text-align: center;
     word-wrap: break-word;
 }
@@ -124,8 +124,6 @@ hr {
 	padding: 20px;
 }
 
-.show-three-per-line>div {
-}
 
 .center-align>img {
     display: block;

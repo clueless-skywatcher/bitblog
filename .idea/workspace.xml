@@ -20,31 +20,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0437f1f-8294-4b8c-b069-3ba7bf9af162" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/blog/templates/blog/sigil_gallery.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/templatetags/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/templatetags/custom_tags.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/profile_cards/Ice_Myths.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/profile_cards_small/Ice_Myths_small.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/sigils/8-bit_Laswell.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/sigils/Brave_One.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/sigils/Deaths_Watch.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/sigils/Growmaster.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/sigils/Ice_Age.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/sigils/Nyan.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/sigils/Nyan_2.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/sigils/Open_Fire.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/sigils/Rainbow_Peace.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/consumers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/routing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/templates/chat/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/templates/chat/room.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_cards/Rogue_Company_-_Ronin_Master.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_cards_small/Rogue_Company_-_Ronin_Master_small.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Burning_Yorick.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Full_Impact.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Knife_Fight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/Rogue_Company_-_Default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/See_No_Evil.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/sigils/The_Wise.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bitblog/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/bitblog/asgi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bitblog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bitblog/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bitblog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bitblog/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/static/blog/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/blog/static/blog/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/blogpost_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/blogpost_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/followlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/followlist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/post.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +56,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -72,17 +74,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\USER\Documents\GitHub\bitblog\chat\templates\chat" />
       <recent name="C:\Users\USER\Documents\GitHub\bitblog\blog\templatetags" />
       <recent name="C:\Users\USER\Documents\GitHub\bitblog\blog\migrations" />
       <recent name="C:\Users\USER\Documents\GitHub\bitblog\media" />
       <recent name="C:\Users\USER\Documents\GitHub\bitblog\blog\static" />
-      <recent name="C:\Users\USER\Documents\GitHub\bitblog\blog\templates" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -112,13 +115,13 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="687" y="214" key="FileChooserDialogImpl" timestamp="1604510058521">
+    <state x="687" y="214" key="FileChooserDialogImpl" timestamp="1604929941464">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="687" y="214" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604510058521" />
-    <state x="461" y="154" key="SettingsEditor" timestamp="1604509970280">
+    <state x="687" y="214" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604929941464" />
+    <state x="461" y="154" key="SettingsEditor" timestamp="1604828006141">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="154" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1604509970280" />
+    <state x="461" y="154" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1604828006141" />
   </component>
 </project>

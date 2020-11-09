@@ -3,3 +3,4 @@
 venv
 bitblog/__pycache__/
 blog/__pycache__/
+chat/__pycache__/
