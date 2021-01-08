@@ -1,6 +1,9 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+	<head>
+		<title>Bitblog - Home</title>
+	</head>
 	{% for post in posts %}
 		<article class="media content-section">
 			<img class = "account-img size-48" src="{{ post.author.bloguser.current_sigil.img.url }}">
