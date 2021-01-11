@@ -17,7 +17,7 @@
 		{% endif %}
 	</div>
 </article>
-	{% if posts %}
+{% if posts %}
 	<div class="content-section">
 		{% for post in page_obj %}
 			<article class="media content-section">
@@ -50,9 +50,9 @@
 				<a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info mb-4">Next</a>
 				<a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info mb-4">Last</a>
 			{% endif %}
-			{% endif %}
+		{% endif %}
 	</div>
-	{% endif %}
+{% endif %}
 {% endblock %}
 {% block sidebar %}
 	<div class="content-section">
