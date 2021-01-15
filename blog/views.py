@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import BlogPost, BlogComment, Following, User, ProfileCard, ProfileCardGallery, Sigil, SigilGallery
 from .blog_enums import *
 from django.contrib import messages
-from .forms import UserRegistrationForm, UserUpdateForm, CommentForm, BlogUserUpdateForm
+from .forms import *
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.generic import (
 	ListView,
@@ -196,6 +196,91 @@ def sigil_gallery(request):
 		'sigils' : sigils,
 		'large' : True
 	})
+
+@login_required
+def give_profilecard(request):
+	if not request.user.is_superuser:
+		return render(request, "blog/forbidden403.html")
+
+	form = GiveProfileCardForm(request.POST or None)
+	if form.is_valid():
+		instance = form.save(commit = False)
+		instance.save()
+		messages.success(request, "Profilecard has been given to user")
+
+	return render(request, "blog/give_profilecard.html", context = {
+		"form": form
+	})
+
+@login_required
+def give_sigil(request):
+	if not request.user.is_superuser:
+		return render(request, "blog/forbidden403.html")
+
+	form = GiveSigilForm(request.POST or None)
+	if form.is_valid():
+		instance = form.save(commit = False)
+		instance.save()
+		messages.success(request, "Sigil has been given to user")
+
+	return render(request, "blog/give_sigil.html", context = {
+		"form": form
+	})
+
+@login_required
+def create_profile_card(request):
+	if not request.user.is_superuser:
+		return render(request, "blog/forbidden403.html")
+
+	if request.method == 'POST':
+		form = CreateProfileCardForm(request.POST, request.FILES)
+		if form.is_valid():
+			name = form.cleaned_data.get('name')
+			img = form.cleaned_data.get('img')
+			img_small = form.cleaned_data.get('img_small')
+
+			profile_card = ProfileCard.objects.create(
+				name = name,
+				img = img,
+				img_small = img_small
+			)
+			profile_card.save()
+			messages.success(request, f"A new Profile Card named {name} has appeared!")
+	else:
+		form = CreateProfileCardForm()
+	return render(request, "blog/create_profilecard.html", context = {
+		"form": form
+	})
+
+@login_required
+def create_sigil(request):
+	if not request.user.is_superuser:
+		return render(request, "blog/forbidden403.html")
+
+	if request.method == 'POST':
+		form = CreateSigilForm(request.POST, request.FILES)
+		if form.is_valid():
+			name = form.cleaned_data.get('name')
+			img = form.cleaned_data.get('img')
+			
+			sigil = Sigil.objects.create(
+				name = name,
+				img = img
+			)
+			sigil.save()
+			messages.success(request, f"A new Sigil named {name} has appeared!")
+	else:
+		form = CreateSigilForm()
+	return render(request, "blog/create_sigil.html", context = {
+		"form": form
+	})
+
+@login_required
+def admin_links(request):
+	if not request.user.is_superuser:
+		return render(request, "blog/forbidden403.html")
+	
+	return render(request, "blog/admin_links.html")
 
 class BlogPostListView(ListView):
 	model = BlogPost

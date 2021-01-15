@@ -35,7 +35,7 @@ class Sigil(models.Model):
 	img = models.ImageField(upload_to='sigils')
 
 	def __str__(self):
-		return f"{self.name} {self.id}"
+		return f"{self.name}"
 
 class ProfileCard(models.Model):
 	name = models.CharField(unique = True, max_length = 50)
@@ -43,7 +43,7 @@ class ProfileCard(models.Model):
 	img_small = models.ImageField(upload_to = 'profile_cards_small')
 	
 	def __str__(self):
-		return f"{self.name} {self.id}"
+		return f"{self.name}"
 
 class BlogUser(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)

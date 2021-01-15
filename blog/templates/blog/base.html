@@ -26,8 +26,11 @@
 	        		{% if user.is_authenticated %}
 		        		<div class="navbar-nav">
 		        			<a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
-		          			<a class="nav-item nav-link" href="{% url 'profile' user.username %}">{{ user.username }}</a>
-		          			<a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+							  <a class="nav-item nav-link" href="{% url 'profile' user.username %}">{{ user.username }}</a>
+							  {% if user.is_superuser %}
+								<a class="nav-item nav-link" href="{% url 'admin-links' %}">Admin Links</a>
+							  {% endif %}
+							  <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>  
 		        		</div>
 	        		{% else %}
 		        		<div class="navbar-nav">

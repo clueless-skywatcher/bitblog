@@ -1,1 +1,6 @@
-eval $(cat .env | sed 's/^/export /')
+readenv() {
+    if [ ! -f .env ]
+    then
+        export $(cat .env | xargs)
+    fi
+}
