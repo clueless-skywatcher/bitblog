@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'ckeditor',
     'blog',
-    'channels',
-    'chat'
 ]
 
 MIDDLEWARE = [
@@ -140,3 +138,4 @@ CKEDITOR_CONFIGS = {
         'toolbarCanCollapse': False,
     },
 }
+
