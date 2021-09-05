@@ -1,16 +1,15 @@
 {% extends 'blog/base.html' %}
 
+{% block title %}Bitblog - Home{% endblock %}
+
 {% block content %}
-	<head>
-		<title>Bitblog - Home</title>
-	</head>
 	{% for post in posts %}
 		<article class="media content-section">
 			<img class = "account-img size-48" src="{{ post.author.bloguser.current_sigil.img.url }}">
 			<div class="media-body">
 				<div class="article-metadata">
 					<a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
-					<img src = "{{ post.author.bloguser.current_profile_card.img_small.url }}">
+					<img src = "{{ post.author.bloguser.current_profile_card.img.url }}" class="prof-card-small">
 					<small class="text-muted">{{ post.post_date }}</small>
 				</div>
 				<hr>

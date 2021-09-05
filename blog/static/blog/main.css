@@ -91,6 +91,11 @@ hr {
     width: 48px;
 }
 
+.prof-card-small {
+	height: 26px;
+	width: 103px;
+}
+
 .account-img {
     display: inline-block;
     vertical-align: top;
@@ -133,4 +138,9 @@ hr {
 
 .django-ckeditor-widget {
     width: 100%;
+}
+
+table, th, td {
+	border: 1px solid white;
+	width: 50%;
 }

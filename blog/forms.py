@@ -33,16 +33,16 @@ class BlogUserUpdateForm(forms.ModelForm):
 		fields = ['desc', 'hometown', 'birth_date']
 
 class GiveProfileCardForm(forms.ModelForm):
-	user = forms.ModelChoiceField(queryset = BlogUser.objects.all(), initial=0)
-	profile_card = forms.ModelChoiceField(queryset = ProfileCard.objects.all(), initial=0)
+	user = forms.ModelChoiceField(queryset = BlogUser.objects.order_by('user__username'), initial=0)
+	profile_card = forms.ModelChoiceField(queryset = ProfileCard.objects.order_by('name'), initial=0)
 
 	class Meta:
 		model = ProfileCardGallery
 		fields = ['user', 'profile_card']
 
 class GiveSigilForm(forms.ModelForm):
-	user = forms.ModelChoiceField(queryset = BlogUser.objects.all(), initial=0)
-	sigil = forms.ModelChoiceField(queryset = Sigil.objects.all(), initial=0)
+	user = forms.ModelChoiceField(queryset = BlogUser.objects.order_by('user__username'), initial=0)
+	sigil = forms.ModelChoiceField(queryset = Sigil.objects.order_by('name'), initial=0)
 
 	class Meta:
 		model = SigilGallery
@@ -51,11 +51,10 @@ class GiveSigilForm(forms.ModelForm):
 class CreateProfileCardForm(forms.ModelForm):
 	name = forms.CharField()
 	img = forms.ImageField()
-	img_small = forms.ImageField()
-
+	
 	class Meta:
 		model = ProfileCard
-		fields = ['name', 'img', 'img_small']
+		fields = ['name', 'img']
 
 class CreateSigilForm(forms.ModelForm):
 	name = forms.CharField()

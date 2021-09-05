@@ -22,4 +22,10 @@ services:
       - "8000:8000"
     depends_on: 
       - db
-    env_file: ./.env    
+    env_file: ./.env
+  adminer:
+    image: adminer
+    ports: 
+      - "8080:8080"
+    depends_on: 
+      - db   

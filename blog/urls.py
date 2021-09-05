@@ -22,5 +22,6 @@ urlpatterns = [
 	path('give-sigil/', give_sigil, name = 'give-sigil'),
 	path('create-profile-card/', create_profile_card, name = 'create-profile-card'),
 	path('create-sigil/', create_sigil, name = 'create-sigil'),
-	path('admin/links/', admin_links, name = 'admin-links')
+	path('admin/links/', admin_links, name = 'admin-links'),
+	path('stats/', stats_dashboard, name = 'stats')
 ]

@@ -3,7 +3,12 @@
 	<h2>Search results for '{{ searchkey }}'</h1>
 	{% for user in users %}
 		<div class="content-section">
-			<a href="{% url 'profile' user.username %}"><h3>{{ user.username }}</h3></a>
+			<h3>
+				<img src="{{ user.bloguser.current_sigil.img.url }}" class="size-48">
+				<a href="{% url 'profile' user.username %}">
+					{{ user.username }}
+				</a>
+			</h3>
 			<small class="article-content">{{ user.bloguser.desc }}</small>
 		</div>
 	{% endfor %}

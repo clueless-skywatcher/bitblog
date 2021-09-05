@@ -141,3 +141,4 @@ cython_debug/
 media/
 
 .envexport
+pgadmin4/

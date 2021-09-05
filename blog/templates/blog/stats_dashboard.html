@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+	<h1>Admin Stats</h1>
+    <h2>Number of sigils each user has</h2>
+    <table>
+        {% for user, sigil in count_user_sigils %}
+        <tr>
+            <th>{{ user }}</th>
+            <th>{{ sigil }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+    <h2>Number of profile cards each user has</h2>
+    <table>
+        {% for user, prof in count_user_profilecards %}
+        <tr>
+            <th>{{ user }}</th>
+            <th>{{ prof }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
