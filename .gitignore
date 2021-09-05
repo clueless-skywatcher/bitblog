@@ -1,6 +1,5 @@
 .idea/
 \*.pyc
 venv
-bitblog/__pycache__/
-blog/__pycache__/
-chat/__pycache__/
+/__pycache__/
+pgadmin4/
