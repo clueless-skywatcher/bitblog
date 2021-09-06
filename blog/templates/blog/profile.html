@@ -1,11 +1,14 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 
+{% block title %}BitBlog - {{ profile_user.username }}{% endblock %}
+
 {% block content %}
 <article class="media content-section">
 	<img class = "account-img size-128" src="{{ sigil.img.url }}">
 	<div class="media-body">
-		<h1>{{ profile_user.username }}		<img src="{{ profile_card.img.url }}"></h1>
+		<h1>{{ profile_user.username }}</h1>
+		<img src="{{ profile_card.img.url }}" width="259" height="65"><br><br>
 		<small class="text-muted">Description</small>
 		<p class="article-content">{{ profile_user.bloguser.desc }}</p>
 		<small class="text-muted">Hometown</small>
@@ -16,7 +19,7 @@
 		{% endif %}
 	</div>
 </article>
-	{% if posts %}
+{% if posts %}
 	<div class="content-section">
 		{% for post in page_obj %}
 			<article class="media content-section">
@@ -24,7 +27,7 @@
 				<div class="media-body">
 					<div class="article-metadata">
 						<a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
-						<img src = "{{ post.author.bloguser.current_profile_card.img_small.url }}">
+						<img src = "{{ post.author.bloguser.current_profile_card.img.url }}" class="prof-card-small">
 						<small class="text-muted">{{ post.post_date }}</small>
 					</div>
 					<h2><a class="article-title" href="{% url 'post' post.id %}">{{ post.title }}</a></h2>
@@ -49,9 +52,9 @@
 				<a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info mb-4">Next</a>
 				<a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info mb-4">Last</a>
 			{% endif %}
-			{% endif %}
+		{% endif %}
 	</div>
-	{% endif %}
+{% endif %}
 {% endblock %}
 {% block sidebar %}
 	<div class="content-section">
@@ -72,7 +75,7 @@
         		{% else %}
         			<li class="list-group-item list-group-item-light"><a href="{% url 'follow-user' user.id profile_user.id %}">Follow</a></li>
         		{% endif %}
-        	{% endif %}
+			{% endif %}
       	</ul>
         </p>
   	</div>

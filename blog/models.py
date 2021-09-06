@@ -9,7 +9,7 @@ from ckeditor.fields import RichTextField
 User._meta.get_field('email')._unique = True
 
 class BlogPost(models.Model):
-	title = models.CharField(max_length = 50)
+	title = models.CharField(max_length = 100)
 	content = RichTextField()
 	post_date = models.DateTimeField(default = timezone.now)
 	author = models.ForeignKey(User, on_delete = models.CASCADE)
@@ -35,15 +35,14 @@ class Sigil(models.Model):
 	img = models.ImageField(upload_to='sigils')
 
 	def __str__(self):
-		return f"{self.name} {self.id}"
+		return f"{self.name}"
 
 class ProfileCard(models.Model):
 	name = models.CharField(unique = True, max_length = 50)
 	img = models.ImageField(upload_to = 'profile_cards')
-	img_small = models.ImageField(upload_to = 'profile_cards_small')
 	
 	def __str__(self):
-		return f"{self.name} {self.id}"
+		return f"{self.name}"
 
 class BlogUser(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)

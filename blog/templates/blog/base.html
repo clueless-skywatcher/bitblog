@@ -7,7 +7,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static 'blog/main.css' %}">
 	<title>
-		{{ title }}
+		{% block title %}
+		{% endblock %}
 	</title>
 	<header class="site-header">
 	 	<nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
@@ -26,8 +27,11 @@
 	        		{% if user.is_authenticated %}
 		        		<div class="navbar-nav">
 		        			<a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
-		          			<a class="nav-item nav-link" href="{% url 'profile' user.username %}">{{ user.username }}</a>
-		          			<a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+							  <a class="nav-item nav-link" href="{% url 'profile' user.username %}">{{ user.username }}</a>
+							  {% if user.is_superuser %}
+								<a class="nav-item nav-link" href="{% url 'admin-links' %}">Admin Links</a>
+							  {% endif %}
+							  <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>  
 		        		</div>
 	        		{% else %}
 		        		<div class="navbar-nav">

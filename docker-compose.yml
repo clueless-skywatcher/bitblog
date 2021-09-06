@@ -1,0 +1,31 @@
+version: "3.9"
+
+services: 
+  db:
+    image: postgres
+    environment: 
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    env_file: ./.env
+  app:
+    build: .
+    command: sh -c "./entry.sh"
+    volumes: 
+      - .:/app    
+    environment: 
+      - CONTAINER_USER=${CONTAINER_USER}
+      - CONTAINER_PASSWORD=${CONTAINER_PASSWORD}
+      - DB_HOST=db
+      - DB_PORT=5432
+    ports: 
+      - "8000:8000"
+    depends_on: 
+      - db
+    env_file: ./.env
+  adminer:
+    image: adminer
+    ports: 
+      - "8080:8080"
+    depends_on: 
+      - db   

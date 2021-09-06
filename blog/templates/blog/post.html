@@ -1,6 +1,8 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 
+{% block title %}{{ post.title }}{% endblock %}
+
 {% block content %}
 	<h2>{{ post.title }}</h2>
 	<article class="media content-section">
@@ -8,7 +10,7 @@
 			<div class="article-metadata">
 				<img class = "size-32" src="{{ post.author.bloguser.current_sigil.img.url }}">
 				<a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
-				<img src = "{{ post.author.bloguser.current_profile_card.img_small.url }}">
+				<img src = "{{ post.author.bloguser.current_profile_card.img.url }}" class="prof-card-small">
 				<small class="text-muted">{{ post.post_date }}</small>
 				{% if post.author == user %}
 					<a href="{% url 'post-update' post.id %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
@@ -36,10 +38,10 @@
 					<div class="article-metadata">
 						<img class = "size-32" src="{{ comment.author.bloguser.current_sigil.img.url }}">
 						<a class="mr-2" href="">{{ comment.author }}</a>
-						<img src="{{ comment.author.bloguser.current_profile_card.img_small.url }}">
+						<img src="{{ comment.author.bloguser.current_profile_card.img.url }}" class="prof-card-small">
 						<small class="text-muted">{{ comment.comment_date }}</small>
 					</div>
-				<p class="article-content">{{ comment.comment | linebreaks }}</p>
+				<p class="article-content">{{ comment.comment | safe | linebreaks }}</p>
 				{% endfor %}
 			</div>
 			{% endif %}

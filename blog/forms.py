@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import BlogComment, BlogUser, User
+from .models import *
 from .blog_enums import *
 
 class UserRegistrationForm(UserCreationForm):
@@ -32,3 +32,34 @@ class BlogUserUpdateForm(forms.ModelForm):
 		model = BlogUser
 		fields = ['desc', 'hometown', 'birth_date']
 
+class GiveProfileCardForm(forms.ModelForm):
+	user = forms.ModelChoiceField(queryset = BlogUser.objects.order_by('user__username'), initial=0)
+	profile_card = forms.ModelChoiceField(queryset = ProfileCard.objects.order_by('name'), initial=0)
+
+	class Meta:
+		model = ProfileCardGallery
+		fields = ['user', 'profile_card']
+
+class GiveSigilForm(forms.ModelForm):
+	user = forms.ModelChoiceField(queryset = BlogUser.objects.order_by('user__username'), initial=0)
+	sigil = forms.ModelChoiceField(queryset = Sigil.objects.order_by('name'), initial=0)
+
+	class Meta:
+		model = SigilGallery
+		fields = ['user', 'sigil']
+
+class CreateProfileCardForm(forms.ModelForm):
+	name = forms.CharField()
+	img = forms.ImageField()
+	
+	class Meta:
+		model = ProfileCard
+		fields = ['name', 'img']
+
+class CreateSigilForm(forms.ModelForm):
+	name = forms.CharField()
+	img = forms.ImageField()
+	
+	class Meta:
+		model = Sigil
+		fields = ['name', 'img']
